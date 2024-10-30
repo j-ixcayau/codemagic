@@ -4,9 +4,20 @@ workflows:
     environment:
       flutter:
         version: fvm
+
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: "main"
+          include: true
+
     scripts:
       - name: Install dependencies
         script: flutter pub get
+
+      - name: Run Flutter tests
+        script: flutter test
 
       - name: Build release APK
         script: flutter build apk --release
