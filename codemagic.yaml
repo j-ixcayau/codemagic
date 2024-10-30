@@ -1,0 +1,22 @@
+workflows:
+  build_and_deploy_firebase:
+    name: Build APK and Deploy to Firebase
+    environment:
+      flutter: fvm
+    scripts:
+      - name: Install dependencies
+        script: flutter pub get
+
+      - name: Build release APK
+        script: flutter build apk --release
+
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+
+    publishing:
+      email:
+        recipients:
+          - jonynija@gmail.com
+        notify:
+          failure: true
+          success: true
